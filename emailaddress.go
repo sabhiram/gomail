@@ -12,6 +12,7 @@ type EmailAddress struct {
 	domain string
 }
 
+// NewEmailAddress returns a new instance of an email address or an error.
 func NewEmailAddress(s string) (*EmailAddress, error) {
 	if len(s) != len(strings.TrimSpace(s)) {
 		return nil, errors.New("email address cannot contain spaces")
