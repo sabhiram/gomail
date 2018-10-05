@@ -1,6 +1,6 @@
 # gomail
 
-General purpose email utilities for golang.
+Email utilities for golang.
 
 ## Install
 
