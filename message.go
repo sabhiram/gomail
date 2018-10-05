@@ -17,7 +17,7 @@ type Message struct {
 // recipients.
 func NewMessage(to EmailAddresses, subject, body string) (*Message, error) {
 	if to == nil {
-		return errors.New("no recipients specified for message")
+		return nil, errors.New("no recipients specified for message")
 	}
 
 	return &Message{

@@ -38,4 +38,23 @@ func (e *EmailAddress) String() string {
 	return fmt.Sprintf("%s@%s", e.local, e.domain)
 }
 
+// EmailAddresses represents a list of email addresses.
 type EmailAddresses []*EmailAddress
+
+// All returns a list of strings of all underlying email addresses.
+func (ee EmailAddresses) All() []string {
+	r := []string{}
+	for _, e := range ee {
+		r = append(r, e.String())
+	}
+	return r
+}
+
+// String implements the stringer interface for a list of email addresses.
+func (ee EmailAddresses) String() string {
+	if ee == nil || len(ee) == 0 {
+		return ""
+	}
+
+	return strings.Join(ee.All(), ";")
+}
