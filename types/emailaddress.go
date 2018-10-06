@@ -1,4 +1,4 @@
-package gomail
+package types
 
 import (
 	"errors"
@@ -56,6 +56,5 @@ func (ee EmailAddresses) String() string {
 	if ee == nil || len(ee) == 0 {
 		return ""
 	}
-
 	return strings.Join(ee.All(), ";")
 }
