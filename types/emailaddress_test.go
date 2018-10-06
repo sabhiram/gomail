@@ -1,6 +1,7 @@
 package types
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -43,5 +44,31 @@ func TestEmailAddress(t *testing.T) {
 		if e.String() != tc.email {
 			t.Fatalf("reconstituted email doesn't match - expected: %s, actual: %s", tc.email, e.String())
 		}
+	}
+}
+
+func TestEmailAddresses(t *testing.T) {
+	e, err := NewEmailAddress("foo@bar.com")
+	if err != nil {
+		t.Fatalf("test error - %s\n", err.Error())
+	}
+
+	var es EmailAddresses
+	if len(es.String()) != 0 {
+		t.Fatalf("expected empty string")
+	}
+
+	for i := 0; i < 10; i++ {
+		es = append(es, e)
+	}
+
+	allAddrs := es.All()
+	if len(allAddrs) != 10 {
+		t.Fatalf("expected 10 email addresses in EmailAddresses instance")
+	}
+
+	toField := es.String()
+	if len(strings.Split(toField, ";")) != 10 {
+		t.Fatalf("expected 10 email addresses in String()")
 	}
 }
