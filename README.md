@@ -1,5 +1,7 @@
 # gomail
 
+[![Build Status](https://travis-ci.org/sabhiram/gomail.svg?branch=master)](https://travis-ci.org/sabhiram/gomail) [![Coverage Status](https://coveralls.io/repos/github/sabhiram/gomail/badge.svg?branch=master)](https://coveralls.io/github/sabhiram/gomail?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/sabhiram/gomail)](https://goreportcard.com/report/github.com/sabhiram/gomail)
+
 Email utilities for golang.
 
 ## What
