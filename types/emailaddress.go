@@ -42,6 +42,20 @@ func (e *EmailAddress) String() string {
 // EmailAddresses represents a list of email addresses.
 type EmailAddresses []*EmailAddress
 
+// NewEmailAddresses converts a list of string email addresses to a validated
+// list of `*EmailAddress`.
+func NewEmailAddresses(ss ...string) (EmailAddresses, error) {
+	var addr EmailAddresses
+	for _, s := range ss {
+		e, err := NewEmailAddress(s)
+		if err != nil {
+			return nil, err
+		}
+		addr = append(addr, e)
+	}
+	return addr, nil
+}
+
 // All returns a list of strings of all underlying email addresses.
 func (ee EmailAddresses) All() []string {
 	r := []string{}
