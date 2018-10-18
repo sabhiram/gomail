@@ -7,17 +7,16 @@ import (
 	"strconv"
 
 	"github.com/sabhiram/gomail"
-	"github.com/sabhiram/gomail/types"
 )
 
 // SMTP encapsulates all the settings needed to send an email via the `Simple
 // Mail Transfer Protocol`: https://tools.ietf.org/html/rfc5321
 type SMTP struct {
-	addr string              // SMTP server hostname
-	host string              // SMTP server address
-	port int                 // SMTP server port
-	from *types.EmailAddress // Sender email address
-	auth smtp.Auth           // SMTP simple auth interface
+	addr string               // SMTP server hostname
+	host string               // SMTP server address
+	port int                  // SMTP server port
+	from *gomail.EmailAddress // Sender email address
+	auth smtp.Auth            // SMTP simple auth interface
 }
 
 // New returns an instance of the SMTP structure which adheres to the `Mailer`
@@ -33,7 +32,7 @@ func New(addr, from, pass string) (gomail.Mailer, error) {
 		return nil, err
 	}
 
-	f, err := types.NewEmailAddress(from)
+	f, err := gomail.NewEmailAddress(from)
 	if err != nil {
 		return nil, err
 	}
@@ -57,9 +56,9 @@ func (s *SMTP) SendEmail(to []string, msg []byte) error {
 		return errors.New("invalid message specified")
 	}
 
-	var recipients types.EmailAddresses
+	var recipients gomail.EmailAddresses
 	for _, ea := range to {
-		if e, err := types.NewEmailAddress(ea); err == nil {
+		if e, err := gomail.NewEmailAddress(ea); err == nil {
 			recipients = append(recipients, e)
 		}
 	}

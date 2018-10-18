@@ -4,8 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"time"
-
-	"github.com/sabhiram/gomail/types"
 )
 
 // Mailer describes an interface that allows sending email messages.
@@ -21,7 +19,7 @@ type Messager interface {
 // Message describes the collection of data that an email can contain and
 // adheres to the `Messager` interface.
 type Message struct {
-	to      types.EmailAddresses
+	to      EmailAddresses
 	headers map[string]string
 	subject string
 	body    string
@@ -29,7 +27,7 @@ type Message struct {
 
 // NewMessage encapsulates an email message along with it's subject and
 // recipients.
-func NewMessage(to types.EmailAddresses, subject, body string) (*Message, error) {
+func NewMessage(to EmailAddresses, subject, body string) (*Message, error) {
 	if to == nil {
 		return nil, errors.New("no recipients specified for message")
 	}
@@ -109,7 +107,7 @@ func (mp *MultipartMessage) SetBoundary(boundary string) {
 	mp.boundary = boundary
 }
 
-func NewMultipartMessage(to types.EmailAddresses, subject string, sections []*MultipartSection) (Messager, error) {
+func NewMultipartMessage(to EmailAddresses, subject string, sections []*MultipartSection) (Messager, error) {
 	if len(sections) <= 0 {
 		return nil, errors.New("no multipart sections specified")
 	}

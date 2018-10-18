@@ -3,8 +3,6 @@ package gomail
 import (
 	"strings"
 	"testing"
-
-	"github.com/sabhiram/gomail/types"
 )
 
 func TestNewMessage(t *testing.T) {
@@ -13,7 +11,7 @@ func TestNewMessage(t *testing.T) {
 		t.Fatalf("Expected bad message due to nil recipients\n")
 	}
 
-	to, err := types.NewEmailAddresses("a@b.com", "b@b.com")
+	to, err := NewEmailAddresses("a@b.com", "b@b.com")
 	if err != nil {
 		t.Fatalf("Expected nil error, got %s\n", err.Error())
 	}

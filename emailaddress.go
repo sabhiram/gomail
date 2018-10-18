@@ -1,4 +1,4 @@
-package types
+package gomail
 
 import (
 	"errors"
@@ -38,6 +38,8 @@ func NewEmailAddress(s string) (*EmailAddress, error) {
 func (e *EmailAddress) String() string {
 	return fmt.Sprintf("%s@%s", e.local, e.domain)
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 // EmailAddresses represents a list of email addresses.
 type EmailAddresses []*EmailAddress

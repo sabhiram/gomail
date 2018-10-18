@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/sabhiram/gomail"
-	"github.com/sabhiram/gomail/types"
 )
 
 func fatalOnError(err error) {
@@ -16,10 +15,9 @@ func fatalOnError(err error) {
 }
 
 func main() {
-	em, err := types.NewEmailAddress("foo@bar.com")
+	to, err := gomail.NewEmailAddresses("foo@bar.com")
 	fatalOnError(err)
 
-	to := types.EmailAddresses{em}
 	mp, err := gomail.NewMultipartMessage(to, "Hello There!", []*gomail.MultipartSection{
 		gomail.NewMultipartTextSection([]byte("This is text!")),
 		gomail.NewMultipartHTMLSection([]byte("<html><body><h1>This is html!</h1></body></html>")),
